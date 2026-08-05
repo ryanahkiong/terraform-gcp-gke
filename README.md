@@ -23,4 +23,3 @@ module demo {
 terraform init
 terraform apply
 ```
-
