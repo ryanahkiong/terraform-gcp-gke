@@ -14,4 +14,10 @@ module demo {
     disk_type      = "pd-balanced"
   }
 ```
+### RUN
+
+```
+terraform init
+terraform apply
+```
 
