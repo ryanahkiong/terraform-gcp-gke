@@ -23,3 +23,26 @@ module demo {
 terraform init
 terraform apply
 ```
+
+## Outputs
+
+| Name | Description |
+|------|-------------|
+| `cluster_name` | The name of the GKE cluster. |
+| `cluster_location` | The location of the GKE cluster. |
+
+##
+
+#### You can expose the module outputs from a root configuration like this:
+
+### Output examples
+
+```
+output "gke_cluster_name" {
+  value = module.demo.cluster_name
+}
+
+output "gke_cluster_location" {
+  value = module.demo.cluster_location
+}
+```
