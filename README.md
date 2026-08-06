@@ -33,7 +33,7 @@ terraform apply
 
 
 
-#### You can expose the module outputs from a root configuration like this:
+##### You can expose the module outputs from a root configuration like this:
 
 ### Output examples
 
