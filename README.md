@@ -31,7 +31,7 @@ terraform apply
 | `cluster_name` | The name of the GKE cluster. |
 | `cluster_location` | The location of the GKE cluster. |
 
-##
+
 
 #### You can expose the module outputs from a root configuration like this:
 
