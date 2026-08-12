@@ -35,8 +35,6 @@ terraform apply
 
 #### You can expose the module outputs from a root configuration like this:
 
-### Output examples
-
 ```
 output "gke_cluster_name" {
   value = module.demo.cluster_name
