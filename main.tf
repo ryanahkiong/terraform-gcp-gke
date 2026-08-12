@@ -4,8 +4,18 @@ resource "google_project_service" "apis" {
   disable_on_destroy = false
 }
 
+# Sets Project ID for API
+resource "google_project_service" "apis" {
+  for_each           = toset(local.gcp_services)
+
+  project            = var.project_id
+  service            = each.value
+  disable_on_destroy = false
+}
+
 # Creates a cluster
 resource "google_container_cluster" "primary" {
+  project = var.project_id
   deletion_protection      = false
   depends_on               = [google_project_service.apis]
   name                     = var.gke_config["cluster_name"]
@@ -40,6 +50,7 @@ resource "google_container_cluster" "primary" {
 
 # Creates a node pool
 resource "google_container_node_pool" "primary_nodes" {
+  project = var.project_id
   name     = "project-node-pool"
   location = var.gke_config["location"]
   cluster  = google_container_cluster.primary.name
@@ -76,11 +87,11 @@ resource "null_resource" "set_kubeconfig" {
 
   triggers = {
     cluster_id = google_container_cluster.primary.id
-    project_id = data.google_client_config.current.project
+    project_id = var.project_id
     location   = var.gke_config["location"]
   }
 
   provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials ${var.gke_config["cluster_name"]} --location ${var.gke_config["location"]} --project ${data.google_client_config.current.project}"
+    command = "gcloud container clusters get-credentials ${var.gke_config["cluster_name"]} --location ${var.gke_config["location"]} --project ${var.project_id}"
   }
 }
