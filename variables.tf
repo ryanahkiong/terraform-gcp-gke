@@ -16,8 +16,3 @@ variable "node_locations" {
   type    = list(string)
   default = []
 }
-
-variable "project_id" {
-  description = "terraform-project-504600"
-  type        = string
-}
