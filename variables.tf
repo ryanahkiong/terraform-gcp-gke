@@ -2,12 +2,12 @@ variable "gke_config" {
   type = map(any)
   default = {
     cluster_name   = "project-cluster"
-    location       = "us-central1"
+    location       = "us-west1"
     node_count     = 1
     min_node_count = 1
     max_node_count = 2
     machine_type   = "e2-medium"
-    disk_size_gb   = 100
+    disk_size_gb   = 70
     disk_type      = "pd-balanced"
   }
 }
