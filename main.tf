@@ -14,8 +14,6 @@ resource "google_container_cluster" "primary" {
   name                     = var.gke_config["cluster_name"]
   location                 = var.gke_config["location"]
 
-  node_locations = length(var.node_locations) > 0 ? var.node_locations : null
-
   remove_default_node_pool = true
   initial_node_count       = 1
   cluster_autoscaling {
@@ -52,8 +50,6 @@ resource "google_container_node_pool" "primary_nodes" {
   cluster  = google_container_cluster.primary.name
 
   initial_node_count = var.gke_config["node_count"]
-
-  node_locations = length(var.node_locations) > 0 ? var.node_locations : null
 
   autoscaling {
     total_min_node_count = var.gke_config["min_node_count"]

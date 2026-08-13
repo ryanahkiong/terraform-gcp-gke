@@ -11,8 +11,3 @@ variable "gke_config" {
     disk_type      = "pd-balanced"
   }
 }
-
-variable "node_locations" {
-  type    = list(string)
-  default = []
-}
