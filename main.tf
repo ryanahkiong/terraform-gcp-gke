@@ -1,9 +1,3 @@
-resource "google_project_service" "apis" {
-  for_each           = toset(local.gcp_services)
-  service            = each.value
-  disable_on_destroy = false
-}
-
 # Sets Project ID for API
 resource "google_project_service" "apis" {
   for_each           = toset(local.gcp_services)
@@ -20,6 +14,9 @@ resource "google_container_cluster" "primary" {
   depends_on               = [google_project_service.apis]
   name                     = var.gke_config["cluster_name"]
   location                 = var.gke_config["location"]
+
+  node_locations = length(var.node_locations) > 0 ? var.node_locations : null
+
   remove_default_node_pool = true
   initial_node_count       = 1
   cluster_autoscaling {
