@@ -73,7 +73,7 @@ resource "google_container_node_pool" "primary_nodes" {
   }
 
   lifecycle {
-    ignore_changes = [initial_node_count, autoscaling[0].total_min_node_count]
+    ignore_changes = [initial_node_count]
   }
 }
 
