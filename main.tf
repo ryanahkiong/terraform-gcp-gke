@@ -16,12 +16,6 @@ resource "google_container_cluster" "primary" {
   remove_default_node_pool = true
   initial_node_count       = 1
 
-  node_config {
-    machine_type = var.gke_config["machine_type"]
-    disk_size_gb = var.gke_config["disk_size_gb"]
-    disk_type    = var.gke_config["disk_type"]
-  }
-
   cluster_autoscaling {
     enabled             = false
     autoscaling_profile = "OPTIMIZE_UTILIZATION"
